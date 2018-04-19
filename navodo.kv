@@ -1,5 +1,95 @@
 #:kivy 1.10.0
 
-<TestScreen>:
+<DistanceElement>:
+    BoxLayout:
+        orientation: 'horizontal'
+        size: self.parent.size
+        pos: self.parent.pos
+        center: self.parent.center
+        Label:
+            id: inc_odo
+            text: '12.1'
+            size_hint_x:0.7
+        Button:
+            text: 'km'
+            size_hint_x:0.3
+
+<ODOElement>:
+    BoxLayout:
+        orientation:'vertical'
+        size: self.parent.size
+        pos: self.parent.pos
+        center: self.parent.center
+        DistanceElement:
+        DistanceElement:
+        Switch:
+            size_hint: ()
+
+<TestElement>:
     Label:
-        text: 'Hello World'
+        text: 'Go Away World'
+        center: self.parent.center
+
+<TestScreen>:
+    BoxLayout:
+        size:root.size
+        orientation: 'vertical'
+        GridLayout:
+            rows: 3
+            cols: 3
+
+            Label:
+                text:'1:02'
+                size_hint_y: 0.1
+            Label:
+                text: ''
+                size_hint_y: 0.1
+            Label:
+                text:'18:55:02'
+                size_hint_y: 0.1
+            BoxLayout:
+                orientation:'horizontal'
+                size_hint_y: 0.5
+                Button:
+                    text: 'kph'
+                Label:
+                    text: '42.3'
+                
+            Label:
+                text: ''
+            BoxLayout:
+                orientation:'horizontal'
+                Label:
+                    text: '12.3'
+                Button:
+                    text: 'km'
+            BoxLayout:
+                orientation:'horizontal'
+                size_hint_y: 0.5
+                Button:
+                    text: 'kph'
+                Label:
+                    text: '67.3'
+                
+            Label:
+                text: ''
+                size_hint_y: 0.5
+            BoxLayout:
+                orientation:'horizontal'
+                size_hint_y: 0.5
+                Label:
+                    text: '42.3'
+                Button:
+                    text: 'km'
+        BoxLayout:
+            size_hint_y:0.2
+            orientation:'horizontal'
+            Button:
+                text:'Start/Stop'
+            Button:
+                text:'Reset'
+        Button:
+            size_hint_y: 0.2
+            text:'lock'
+
+
