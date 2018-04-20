@@ -1,36 +1,5 @@
 #:kivy 1.10.0
 
-<DistanceElement>:
-    BoxLayout:
-        orientation: 'horizontal'
-        size: self.parent.size
-        pos: self.parent.pos
-        center: self.parent.center
-        Label:
-            id: inc_odo
-            text: '12.1'
-            font_size: 65
-            size_hint_x:0.7
-        Button:
-            text: 'km'
-            size_hint_x:0.3
-
-<ODOElement>:
-    BoxLayout:
-        orientation:'vertical'
-        size: self.parent.size
-        pos: self.parent.pos
-        center: self.parent.center
-        DistanceElement:
-        DistanceElement:
-        Switch:
-            size_hint: ()
-
-<TestElement>:
-    Label:
-        text: 'Go Away World'
-        center: self.parent.center
-
 <TestScreen>:
     BoxLayout:
         size:root.size
@@ -38,69 +7,84 @@
         GridLayout:
             rows: 3
             cols: 3
-
+    # Stopwatch
             Label:
-                text:'1:02'
+                text: root.stopwatch_dt
                 size_hint_y: 0.1
                 font_size: 25
             Label:
                 text: ''
                 size_hint_y: 0.1
+    # Clock
             Label:
-                text:'18:55:02'
+                text: root.clock_timeofday
                 size_hint_y: 0.1
                 font_size: 25
+    # CAS      
             BoxLayout:
                 orientation:'horizontal'
                 size_hint_y: 0.5
                 Button:
                     text: 'kph'
                     font_size: 25
+                    on_press: root.zero_CAS()
                 Label:
-                    text: '42.3'
+                    text: str(root.speed_CAS)
                     font_size: 65
                 
             Label:
                 text: ''
+    # Inc ODO           
             BoxLayout:
                 orientation:'horizontal'
                 Label:
-                    text: '12.3'
+                    text: str(root.distance_incODO)
                     font_size: 65
                 Button:
                     text: 'km'
                     font_size: 25
+                    on_press: root.zero_incODO()
+    # Speed                
             BoxLayout:
                 orientation:'horizontal'
                 size_hint_y: 0.5
                 Button:
                     text: 'kph'
                     font_size: 25
+                    on_press: root.reset_speed()
                 Label:
-                    text: '67.3'
+                    text: str(root.speed_Curr)
                     font_size: 65
                 
             Label:
                 text: ''
                 size_hint_y: 0.5
+    # Stage ODO            
             BoxLayout:
                 orientation:'horizontal'
                 size_hint_y: 0.5
                 Label:
-                    text: '42.3'
+                    text: str(root.distance_stageODO)
                     font_size: 65
                 Button:
                     text: 'km'
                     font_size: 25
+                    on_press: root.zero_stageODD()
+    # Stopwatch Buttons
         BoxLayout:
             size_hint_y:0.2
             orientation:'horizontal'
             Button:
                 text:'Start/Stop'
                 font_size: 45
+                on_press: root.stopwatch_start_stop()
             Button:
                 text:'Reset'
                 font_size: 45
+                on_press: root.stopwatch_reset()
+    # ODO direction switch
+            Switch:
+    # Lock Button
         Button:
             size_hint_y: 0.2
             text:'lock'
