@@ -1,0 +1,37 @@
+>>> import obd
+>>> from obd import ECU
+>>>
+>>> ports = obd.scan_serial()
+>>>
+>>> print(ports)
+['\\.\\COM1', '\\.\\COM4']
+>>> obd.logger.setLevel(obd.logging.DEBUG)
+>>> connection = obd.OBD('COM3',fast=False)
+[obd.obd] ======================= python-OBD (v0.6.1) =======================
+[obd.obd] Explicit port defined
+[obd.elm327] Initializing ELM327: PORT=COM3 BAUD=auto PROTOCOL=auto
+[obd.elm327] could not open port 'COM3': OSError(22, 'The semaphore timeout period has expired.', None, 121)
+[obd.obd] Closing connection
+[obd.obd] Cannot load commands: No connection to car
+[obd.obd] ===================================================================
+>>> connection = obd.OBD('COM3',fast=False)
+[obd.obd] ======================= python-OBD (v0.6.1) =======================
+[obd.obd] Explicit port defined
+[obd.elm327] Initializing ELM327: PORT=COM3 BAUD=auto PROTOCOL=auto
+[obd.elm327] could not open port 'COM3': OSError(22, 'The semaphore timeout period has expired.', None, 121)
+[obd.obd] Closing connection
+[obd.obd] Cannot load commands: No connection to car
+[obd.obd] ===================================================================
+>>> connection = obd.OBD('\\.\\COM3',fast=False)
+[obd.obd] ======================= python-OBD (v0.6.1) =======================
+[obd.obd] Explicit port defined
+[obd.elm327] Initializing ELM327: PORT=\.\COM3 BAUD=auto PROTOCOL=auto
+[obd.elm327] could not open port '\\.\\COM3': OSError(22, 'The semaphore timeout period has expired.', None, 121)
+[obd.obd] Closing connection
+[obd.obd] Cannot load commands: No connection to car
+[obd.obd] ===================================================================
+>>> connection = obd.OBD('\\.\\COM4',fast=False)
+[obd.obd] ======================= python-OBD (v0.6.1) =======================
+[obd.obd] Explicit port defined
+[obd.elm327] Initializing ELM327: PORT=\.\COM4 BAUD=auto PROTOCOL=auto
+
