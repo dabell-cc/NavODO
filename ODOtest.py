@@ -13,13 +13,14 @@ class ODOScreen(Widget):
     connection = None
 
     def connect(self):
-        self.connection = obd.OBD()
-    
+        # self.connection = obd.OBD()
+        pass
 
     def update(self, dt):
-        self.service_km = self.connection.query(obd.commands.DISTANCE_SINCE_DTC_CLEAR)
-        self.curr_kph = self.connection.query(obd.commands.SPEED)
-        self.curr_rpm = self.connection.query(obd.commands.RPM)
+        # self.service_km = self.connection.query(obd.commands.DISTANCE_SINCE_DTC_CLEAR)
+        # self.curr_kph = self.connection.query(obd.commands.SPEED)
+        # self.curr_rpm = self.connection.query(obd.commands.RPM)
+        pass
 
 
 class ODOTestApp(App):
@@ -27,7 +28,7 @@ class ODOTestApp(App):
         odo = ODOScreen()
         odo.connect()
         Clock.schedule_interval(odo.update, 1.0/2.0)
-        return
+        return odo
 
 if __name__ == '__main__':
     ODOTestApp().run()
