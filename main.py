@@ -1,6 +1,6 @@
 from kivy.app import App
 from kivy.uix.widget import Widget
-from kivy.uix.label import Label
+from kivy.properties import NumericProperty
 
 class DistanceElement(Widget):
     pass
@@ -12,6 +12,7 @@ class TestElement(Widget):
     pass
 
 class TestScreen(Widget):
+    
     pass
 
 class NavODOApp(App):
