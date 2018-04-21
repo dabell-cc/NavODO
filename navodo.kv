@@ -9,7 +9,7 @@
             cols: 3
     # Stopwatch
             Label:
-                text: root.stopwatch_dt
+                text: root.stopwatch_disp
                 size_hint_y: 0.1
                 font_size: 25
             Label:
@@ -29,7 +29,7 @@
                     font_size: 25
                     on_press: root.zero_CAS()
                 Label:
-                    text: str(root.speed_CAS)
+                    text: str(round(root.speed_CAS,2))
                     font_size: 65
                 
             Label:
@@ -69,7 +69,7 @@
                 Button:
                     text: 'km'
                     font_size: 25
-                    on_press: root.zero_stageODD()
+                    on_press: root.zero_stageODO()
     # Stopwatch Buttons
         BoxLayout:
             size_hint_y:0.2
@@ -83,11 +83,19 @@
                 font_size: 45
                 on_press: root.stopwatch_reset()
     # ODO direction switch
-            Switch:
+            BoxLayout:
+                orientation:'vertical'
+                Label:
+                    text: root.reverse_label
+                Switch:
+                    on_active: root.reverse_toggle()
+                    
     # Lock Button
         Button:
             size_hint_y: 0.2
             text:'lock'
             font_size: 65
+            # on_press: root.unlock()
+            # on_release: root.lock()
 
 
