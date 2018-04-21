@@ -100,40 +100,47 @@ class TestScreen(Widget):
         
         # Update the speeds (if connected)
         if(self.connection is not None and self.connection.is_connected()):
-            speed_resp = self.connection.query(obd.commands.SPEED)
+            try:
             
-            if(not speed_resp.is_null()):
-                speed = speed_resp.value.magnitude
-                self.speed_time_new = speed_resp.time
-
-            self.speed_Curr = str(speed)
-
-            # Compute and update CAS
-            CAS = (self.speed_Curr + self.speed_CAS)/2
-            self.speed_CAS = CAS
-
-            # Compute distance
-            # distance (m) = speed (m/s) * time (s)
-            if(not (self.speed_time_old is None)):
-                dtime = self.speed_time_new - self.speed_time_old # in seconds
+                speed_resp = self.connection.query(obd.commands.SPEED)
                 
-                dspeed = (speed*1000.0)/3600.0 # km/h to m/s
+                if(not speed_resp.is_null()):
+                    speed = speed_resp.value.magnitude
+                    self.speed_time_new = speed_resp.time
+                    if(self.speed_time_old is None):
+                        self.speed_time_old = self.speed_time_new
 
-                #   km      1000 m      1 h       1 min       1000 m
-                # ------ x -------- x -------- x -------- =  -------
-                #   h        1 km      60 min     60 sec      3600 s
-                
-                # distance (m) = speed (m/s) * time (s)
-                distance = dspeed * dtime
+                    self.speed_Curr = str(speed)
 
-            # Add/Subtract to/from ODOs
-            if(self.reverse_flag):
-                self.distance_incODO -= distance
-                self.distance_stageODO -= distance
-            else:
-                self.distance_incODO += distance
-                self.distance_stageODO += distance
+                    # Compute and update CAS
+                    CAS = (self.speed_Curr + self.speed_CAS)/2
+                    self.speed_CAS = CAS
 
+                    # Compute distance
+                    # distance (m) = speed (m/s) * time (s)
+                    if(not (self.speed_time_old == self.speed_time_new)):
+                        dtime = self.speed_time_new - self.speed_time_old # in seconds
+                        self.speed_time_old = self.speed_time_new
+                        dspeed = (speed*1000.0)/3600.0 # km/h to m/s
+
+                        #   km      1000 m      1 h       1 min       1000 m
+                        # ------ x -------- x -------- x -------- =  -------
+                        #   h        1 km      60 min     60 sec      3600 s
+                        
+                        # distance (m) = speed (m/s) * time (s)
+                        distance = dspeed * dtime
+
+                        # Add/Subtract to/from ODOs
+                        if(self.reverse_flag):
+                            self.distance_incODO -= distance
+                            self.distance_stageODO -= distance
+                        else:
+                            self.distance_incODO += distance
+                            self.distance_stageODO += distance
+            except:
+                print('OBD2 couldnt read cod')
+                e = sys.exc_info()[0]
+                print('Error: ' + e)
             
 
     def fast_update(self, dt):
