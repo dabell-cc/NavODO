@@ -4,6 +4,7 @@ from kivy.uix.widget import Widget
 from kivy.properties import NumericProperty,StringProperty, \
     BooleanProperty, ObjectProperty
 from kivy.clock import Clock
+import sys
 
 # Time
 import time
@@ -146,14 +147,21 @@ class TestScreen(Widget):
         self.stopwatch_disp = str(timedelta(seconds=round(self.stopwatch_dt,3)))[:-3] #chops empty microseconds
         
     def connect(self):
-        self.connection = obd.OBD(portstr='\\.\\COM5')
+        if(self.connection is None):
+            try:
+                self.connection = obd.OBD(portstr='\\.\\COM5')
+            except:
+                print('OBD2 connection caused exception')
+                e = sys.exc_info()[0]
+                print('Error: ' + e)
+            
 
 
 class NavODOApp(App):
     def build(self):
         # return Label(text='Hello world')
         app = TestScreen()
-        
+        app.connect()
         Clock.schedule_interval(app.fast_update, 1.0/60.0)
         Clock.schedule_interval(app.slow_update, 1.0/3.0)
         return app
