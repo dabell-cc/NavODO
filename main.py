@@ -12,9 +12,10 @@ class TestScreen(Widget):
     # Timing and Clock
     clock_timeofday = StringProperty()
     stopwatch_dt = StringProperty('')
-    stopwatch_start = 0
-    stopwatch_stop = 0
+    stopwatch_start = timer()
+    stopwatch_stop = stopwatch_start
     stopwatch_is_running = BooleanProperty(False)
+
 
     # Speeds
     speed_CAS = NumericProperty(0)
@@ -40,12 +41,15 @@ class TestScreen(Widget):
         pass
     
     def stopwatch_start_stop(self):
+       
         if(self.stopwatch_is_running):
             self.stopwatch_stop = timer()
             self.stopwatch_is_running = False
         else:
-            self.stopwatch_start = timer()
             self.stopwatch_is_running = True
+            if(self.stopwatch_start ==  self.stopwatch_stop):
+                self.stopwatch_start = timer()
+                self.stopwatch_stop = self.stopwatch_start
     
     def stopwatch_reset(self):
         self.stopwatch_start = timer()
@@ -64,11 +68,11 @@ class TestScreen(Widget):
         
 
 
-
 class NavODOApp(App):
     def build(self):
         # return Label(text='Hello world')
         app = TestScreen()
+        
         Clock.schedule_interval(app.update, 1.0/3.0)
         return app
 
