@@ -43,6 +43,7 @@ class TestScreen(Widget):
     distance_stageODO = NumericProperty(0)
     reverse_label = StringProperty('Forward')
     reverse_flag = False
+    cycleNum = 0
 
     locked = False
 
@@ -68,6 +69,7 @@ class TestScreen(Widget):
     def zero_CAS(self):
         if(not self.locked):
             self.speed_CAS = self.speed_Curr
+            self.cycleNum = 0
     
     def zero_stageODO(self):
         if(not self.locked):
@@ -112,8 +114,9 @@ class TestScreen(Widget):
 
                     self.speed_Curr = str(speed)
 
-                    # Compute and update CAS
-                    CAS = (self.speed_Curr + self.speed_CAS)/2
+                    # Compute and update 
+                    self.cycleNum+=1
+                    CAS = (self.speed_Curr + (self.cycleNum*self.speed_CAS))/(self.cycleNum+1)
                     self.speed_CAS = CAS
 
                     # Compute distance
