@@ -76,6 +76,23 @@ class TestScreen(Widget):
             self.distance_stageODO = 0
             self.distance_incODO = 0
     
+    def inc_stageODO(self):
+        if(not self.locked):
+            self.distance_stageODO += 100 #distance is in meters
+    
+    def dec_stageODO(self):
+        if(not self.locked):
+            self.distance_stageODO -= 100 #distance is in meters
+    
+    def inc_incODO(self):
+        if(not self.locked):
+            self.distance_incODO += 100
+    
+    def dec_incODO(self):
+        if(not self.locked):
+            self.distance_incODO -= 100
+
+
     def zero_incODO(self):
         if(not self.locked):
             self.distance_incODO = 0

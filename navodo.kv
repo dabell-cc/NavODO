@@ -32,8 +32,17 @@
                     text: str(round(root.speed_CAS,2))
                     font_size: 65
                 
-            Label:
-                text: ''
+            BoxLayout:
+                orientation:'vertical'
+                size_hint_y: 0.5
+                Button:
+                    text: '+'
+                    font_size: 25
+                    on_press: root.inc_incODO()
+                Button:
+                    text: '-'
+                    font_size: 25
+                    on_press: root.dec_incODO()
     # Inc ODO           
             BoxLayout:
                 orientation:'horizontal'
@@ -56,9 +65,17 @@
                     text: str(round(root.speed_Curr,2))
                     font_size: 65
                 
-            Label:
-                text: ''
+            BoxLayout:
+                orientation:'vertical'
                 size_hint_y: 0.5
+                Button:
+                    text: '+'
+                    font_size: 25
+                    on_press: root.inc_stageODO()
+                Button:
+                    text: '-'
+                    font_size: 25
+                    on_press: root.dec_stageODO()
     # Stage ODO            
             BoxLayout:
                 orientation:'horizontal'
