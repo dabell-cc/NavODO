@@ -13,4 +13,4 @@ python -m pip install obd
 ```
 
 # User Guide
-![alt text](.\NavODO_UserGuide.png.png "User Guide Image")
+![alt text](https://github.com/dabell-cc/NavODO/blob/master/NavODO_UserGuide.png "User Guide Image")
