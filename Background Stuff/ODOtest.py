@@ -2,7 +2,9 @@ from kivy.app import App
 from kivy.uix.widget import Widget
 from kivy.uix.label import Label
 from kivy.properties import StringProperty
+from kivy.properties import NumericProperty
 from kivy.clock import Clock
+from kivy.garden import gauge
 import obd  
 from obd import OBDCommand
 
@@ -10,6 +12,7 @@ class ODOScreen(Widget):
     service_km = StringProperty(380.8)
     curr_kph = StringProperty(75)
     curr_rpm = StringProperty(3600)
+    boost = NumericProperty(0)
     connection = None
 
     def connect(self):
@@ -19,7 +22,9 @@ class ODOScreen(Widget):
     def update(self, dt):
         self.service_km = str(self.connection.query(obd.commands.DISTANCE_SINCE_DTC_CLEAR))
         self.curr_kph = str(self.connection.query(obd.commands.SPEED))
-        self.curr_rpm = str(self.connection.query(obd.commands.RPM))
+        # self.curr_rpm = str(self.connection.query(obd.commands.RPM))
+        self.curr_rpm = "000"
+        self.boost = 1
         # pass
 
 
