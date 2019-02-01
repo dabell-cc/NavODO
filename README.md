@@ -9,6 +9,8 @@ I'm using this application on a Windows 10 tablet, with a USB ELM327 OBD-II read
 
 # Installing Dependencies
 ## Required 
+1. [Python 3 for Windows](https://www.python.org/downloads/)  
+2. install python modules below
 ```sh
 python -m pip install --upgrade pip wheel setuptools
 python -m pip install docutils pygments pypiwin32 kivy.deps.sdl2 kivy.deps.glew
