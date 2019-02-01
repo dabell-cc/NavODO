@@ -1,3 +1,12 @@
+# My Setup
+I'm using this application on a Windows 10 tablet, with a USB ELM327 OBD-II reader. Bluetooth OBD-II readers are not tested. This application should be able to run on any platform supported by Kivy (python GUI framework), but will likely require changes to do so. There's also a good chance you'll have to fiddle with Prolific USB-to-Serial drivers to get the ELM327 device to work - many of the cheap cables contain counterfeit chips which are ignored by the newest drivers that get loaded automatically by Windows. 
+
+## Specific Hardware
+[Asus Windows 10 Tablet/2-in-1 T101HA](https://www.asus.com/ca-en/2-in-1-PCs/ASUS-Transformer-Book-T101HA/)  
+[USB ELM327 OBD-II Code Reader](https://www.ebay.ca/sch/i.html?_odkw=elm327+USB+OBD2+Scan&_osacat=0&_from=R40&_trksid=m570.l1313&_nkw=elm327+USB+OBD2+Scan+-bluetooth&_sacat=0)  
+[Magic Mount XL](https://www.amazon.ca/SCOSCHE-magicMOUNT-Headrest-Magnetic-Smartphones/dp/B00XPRQRGG/ref=sr_1_1)
+
+
 # Installing Dependencies
 ## Required 
 ```sh
