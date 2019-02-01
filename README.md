@@ -23,3 +23,11 @@ python -m pip install kivy_examples
 
 # User Guide
 ![alt text](https://github.com/dabell-cc/NavODO/blob/master/NavODO_UserGuide.png "User Guide Image")
+
+
+## Contributers
+- David Bell
+- Alex Thorburn
+
+## Testers
+- Scott Wood
